@@ -53,6 +53,7 @@ CREDENTIALS = {
   'password' => CONFIG[:login][:password],
   'dologin' => 1
 }
+SALT = CONFIG[:login][:salt]
 SERVICES = {
   'BBC Radio 1' => 
     { :key => 'bbcr1', :type => 'radio' },
