@@ -1,0 +1,17 @@
+<h1>BBC Redux Podcaster</h1>
+<p>Redux podcaster generates podcast feeds using <a href="http://www.bbcredux.com/">Redux</a> data.</p>
+<p>Some example brands below.</p>
+<ul>
+<li><%= link_to('Heroes' + image_tag('rss14.png', :class => 'rss'), podcast_url(:guid => to_guid('b007vcf4'))) %></li>
+<li><%= link_to('Giles Peterson' + image_tag('rss14.png', :class => 'rss'), podcast_url(:guid => to_guid('b006wq8d'))) %></li>
+<li><%= link_to('Formula One' + image_tag('rss14.png', :class => 'rss'), podcast_url(:guid => to_guid('b00j4j7g'))) %></li>
+<li><%= link_to('The Essential Mix' + image_tag('rss14.png', :class => 'rss'), podcast_url(:guid => to_guid('b006wkfp'))) %></li>
+<li><%= link_to('Not Going Out' + image_tag('rss14.png', :class => 'rss'), podcast_url(:guid => to_guid('b006mw70'))) %></li>
+</ul>
+<p>You just need a brand pid. These can be found over at <%= link_to('BBC Programmes', 'http://bbc.co.uk/programmes') %>.</p>
+<% form_tag(obscure_path, :method => "post") do %>
+  <h2><label for="pid">Enter a brand pid, e.g <code>b006wkfp</code></label></h2>
+  <%= text_field_tag(:pid) %>
+  <%= submit_tag("fetch") %>
+<% end %>
+<p id="footer"><small>Any bugs? <strike>keep them to y...</strike> contact <a href="mailto:duncan.robertson2@bbc.co.uk">Duncan Robertson</a></small></p>

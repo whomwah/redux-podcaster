@@ -1,0 +1,89 @@
+body {
+  font: 62.5% Georgia, serif;
+  color: #333;
+  padding:1em;
+}
+
+a { text-decoration: none; }
+a:link { color: #06C; }
+a:hover { color: blue; }
+a:visited { color: #86C; } 
+
+h1,h2 {
+  color: #000;
+}
+
+h1 {
+  font-size: 3em;
+  margin-bottom:0.5em;  
+  line-height:0.2em;
+}
+
+h2 {
+  font-size: 1em;
+  margin:0 0 0.3em 0;  
+  padding:0;
+}
+
+p,ul,pre {
+  margin:0;  
+  font-size: 1.8em;
+  margin-bottom:0.8em;  
+}
+
+label, input {
+  font-size: 2em;
+  padding:0.2em;
+}
+
+input#pid {
+  width:30%;
+}
+
+#url h1 {
+  margin-bottom:0.4em;
+}
+
+img.rss {
+  position:relative;
+  border:0;
+  left:5px;
+}
+
+img.brand {
+  margin-bottom:1.5em;
+}
+
+#url h2 {
+  font-weight:normal;
+  font-size: 1.6em;
+  margin-bottom:1em;
+}
+
+#url p {
+  font-size: 1.2em;
+  margin-bottom:0;
+}
+
+#url pre {
+  font-family: Georgia, serif;
+  font-size: 1.4em;
+  margin-bottom:2em;
+}
+
+#url label, #url input {
+  font-size: 1.3em;
+  padding:0.2em;
+  border:1px solid #ccc;
+  font-weight:bold;
+}
+
+#url #copy {
+  width:75%;
+} 
+
+#footer {
+  position:absolute;
+  bottom:1em;
+  font-size: 1em;
+}
