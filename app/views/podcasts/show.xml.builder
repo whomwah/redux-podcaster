@@ -10,10 +10,6 @@ xml.rss(:version => '2.0', 'xmlns:itunes' => 'http://www.itunes.com/dtds/podcast
     xml.tag!('itunes:author', 'http://www.bbc.co.uk')
     xml.tag!('itunes:summary', CGI.unescapeHTML(@brand.subtitle))
     xml.description @brand.subtitle 
-    xml.tag!('itunes:owner') do |tags|
-      tags.tag!('itunes:name', 'Duncan Robertson')
-      tags.tag!('itunes:email', 'duncan@whomwah.com')
-    end
     xml.tag!('itunes:image', :href => @brand.image) 
     xml.category 'Music'
     xml.tag!('itunes:explicit', 'No')
