@@ -21,6 +21,7 @@ class Redux
 
       url = File.join(e.redux_url)
       e.redux_link = url
+      puts e.redux_link + ' ' + e.pid
       res = Net::HTTP.post_form(URI.parse(url), CREDENTIALS)
       doc = Nokogiri::XML(res.body)
       results=[]

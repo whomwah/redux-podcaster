@@ -27,7 +27,6 @@ class Brand
       episode.title = e.search("span[@class='title']").text.strip
       episode.subtitle = e.search("span[@class='subtitle']").text.strip
       episode.description = e.search("div[@class='description']").text.gsub(/<\/?[^>]*>/, "").strip
-      next if episode.description.include?('(R)')
 
       s = e.search("div[@class='location']").text.split('(').first.strip 
       next if SERVICES[s].nil? 
@@ -35,7 +34,13 @@ class Brand
       episodes << episode 
     end
 
-    brand.episodes = episodes.reverse
+    tmp_episodes = Hash.new 
+    episodes.each do |e|
+      next if e.start > Time.now
+      tmp_episodes[e.pid] = e unless e.service.nil?
+    end
+
+    brand.episodes = tmp_episodes.values.reverse
     brand
   end
 
