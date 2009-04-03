@@ -5,11 +5,11 @@ class HomeController < ApplicationController
 
   def authenticate
     authenticate_or_request_with_http_basic(realm = 'Enter your BBC Redux login details') do |username,password| 
-      #if Redux.valid_user?(username,password)
+      if Redux.valid_user?(username,password)
         true 
-      #else
-      #  return render(:status => 401, :template => 'home/badlogin')
-      #end
+      else
+        return render(:status => 401, :template => 'home/badlogin')
+      end
     end
   rescue URI::InvalidURIError, OpenURI::HTTPError, SocketError, Errno::ENETUNREACH
     render(:status => 401, :template => 'home/badlogin')
