@@ -11,9 +11,9 @@ xml.rss(:version => '2.0', 'xmlns:itunes' => 'http://www.itunes.com/dtds/podcast
     xml.tag!('itunes:summary', CGI.unescapeHTML(@brand.subtitle))
     xml.description @brand.subtitle 
     xml.tag!('itunes:image', :href => @brand.image) 
-    xml.category 'Music'
+    xml.category 'BBC'
     xml.tag!('itunes:explicit', 'No')
-    xml.tag!('itunes:category', :text => 'Music')
+    xml.tag!('itunes:category', :text => 'BBC')
     unless @brand.episodes.empty?
       xml.lastBuildDate @brand.episodes.first.start.rfc2822
     end
