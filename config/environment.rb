@@ -45,7 +45,7 @@ end
 require 'file_store_expires'
 
 CONFIG = YAML::load(File.read('/Users/duncan/redux.yaml'))
-HOST = 'http://redux.podcasts.local'
+HOST = 'http://redux.whomwah.com'
 MAX_EPISODES = 20
 REDUX_URL = 'http://g.bbcredux.com'
 CREDENTIALS = {

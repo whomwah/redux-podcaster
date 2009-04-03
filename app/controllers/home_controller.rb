@@ -8,6 +8,6 @@ class HomeController < ApplicationController
       Redux.valid_user?(username,password)
     end
   rescue URI::InvalidURIError, OpenURI::HTTPError, SocketError, Errno::ENETUNREACH
-    render(:status => 404, :template => 'podcasts/show')
+    render(:status => 401, :template => 'home/badlogin')
   end
 end
