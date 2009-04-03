@@ -44,6 +44,8 @@ namespace :deploy do
   end
 
   task :after_symlink do
+    run "ln -nfs #{shared_path}/cache/" \
+      " #{current_path}/tmp/cache"
     # passenger lets you do this to restart the app 
     run "touch #{current_path}/tmp/restart.txt"
   end

@@ -1,6 +1,7 @@
 class Episode
   attr_accessor :pid,:redux_link, :start, :title, 
-                :links, :subtitle, :service, :description
+                :links, :subtitle, :service, :description,
+                :cached_last
 
   def initialize
     @service = nil
@@ -8,6 +9,7 @@ class Episode
     @subtitle = nil
     @description = nil
     @start = nil
+    @cached_last = nil
     @pid = nil
     @redux_link = nil 
     @links = []
