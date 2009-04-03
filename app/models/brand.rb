@@ -48,6 +48,6 @@ class Brand
   end
 
   def rss_link 
-    File.join(HOST, self.pid, 'podcasts.xml')
+    File.join(self.pid, 'podcasts.xml')
   end
 end

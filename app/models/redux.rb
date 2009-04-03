@@ -2,7 +2,7 @@ require 'net/http'
 
 class Redux 
   def self.valid_user?(u,p)
-    res = Net::HTTP.post_form(URI.parse('http://g.bbcredux.com/user'), {
+    res = Net::HTTP.post_form(URI.parse("#{REDUX_URL}/user"), {
       'username' => u, 
       'password' => p, 
       'dologin' => 1

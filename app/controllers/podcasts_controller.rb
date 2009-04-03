@@ -12,6 +12,8 @@ class PodcastsController < ApplicationController
     respond_to do |format|
       format.xml
     end
+  rescue URI::InvalidURIError, OpenURI::HTTPError, SocketError, Errno::ENETUNREACH
+    custom_404 
   end
 
   def url
@@ -19,6 +21,8 @@ class PodcastsController < ApplicationController
     @guid = Obscurer.obscure(params[:pid])
     key = podcast_path(:guid => @guid)
     @brand = handle_fragment(key,params[:pid])
+  rescue URI::InvalidURIError, OpenURI::HTTPError, SocketError, Errno::ENETUNREACH
+    custom_404
   end
 
   private
@@ -27,7 +31,9 @@ class PodcastsController < ApplicationController
     expire_fragment(key) unless 
       brand = read_fragment(key, :expires_in => 6.hours) || write_fragment(key, Redux.data(pid))
     return brand
-  rescue URI::InvalidURIError, OpenURI::HTTPError, SocketError, Errno::ENETUNREACH
-    return render(:status => 404, :template => 'podcasts/show')
+  end
+
+  def custom_404
+    render(:status => 404, :template => 'podcasts/show')
   end
 end
