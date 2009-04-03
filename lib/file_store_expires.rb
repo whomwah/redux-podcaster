@@ -1,6 +1,5 @@
 class ActiveSupport::Cache::FileStore
   def read(name, options = nil) 
-    logger.warn("options: #{options.inspect}")
     ttl = 0
     ttl = options[:expires_in] if options.is_a?(Hash) && options.has_key?(:expires_in)
     fn = real_file_path(name)
