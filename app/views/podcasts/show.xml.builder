@@ -10,6 +10,11 @@ xml.rss(:version => '2.0', 'xmlns:itunes' => 'http://www.itunes.com/dtds/podcast
     xml.tag!('itunes:author', 'http://www.bbc.co.uk')
     xml.tag!('itunes:summary', CGI.unescapeHTML(@brand.subtitle))
     xml.description @brand.subtitle 
+    xml.image do |i|
+      i.url @brand.image
+      i.title CGI.unescapeHTML(@brand.title)
+      i.link @brand.programmes_link
+    end
     xml.tag!('itunes:image', :href => @brand.image) 
     xml.category 'BBC'
     xml.tag!('itunes:explicit', 'No')

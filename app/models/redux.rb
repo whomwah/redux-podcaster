@@ -13,7 +13,6 @@ class Redux
   end
 
   def self.data(pid)
-    pid = pid.downcase.strip
     return unless brand = Brand.fetch(pid)
     episodes_to_use = []
 
