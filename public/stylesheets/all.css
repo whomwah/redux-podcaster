@@ -85,5 +85,6 @@ img.brand {
 #footer {
   position:absolute;
   bottom:1em;
+  right:1em;
   font-size: 1em;
 }
