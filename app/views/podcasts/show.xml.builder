@@ -1,7 +1,7 @@
 xml.instruct!
 xml.rss(:version => '2.0', 'xmlns:itunes' => 'http://www.itunes.com/dtds/podcast-1.0.dtd', 'xmlns:atom' => 'http://www.w3.org/2005/Atom') do
   xml.channel do
-    xml.tag!('atom:link', :href => podcast_url(:guid => to_guid(@brand.pid)), :rel => 'self', :type => 'application/rss+xml')
+    xml.tag!('atom:link', :href => podcast_url(:guid => to_guid(@brand.pid), :year => @brand.year), :rel => 'self', :type => 'application/rss+xml')
     xml.title CGI.unescapeHTML(@brand.title)
     xml.link @brand.programmes_link
     xml.language 'en-uk'

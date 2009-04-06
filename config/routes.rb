@@ -6,9 +6,14 @@ ActionController::Routing::Routes.draw do |map|
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
-  map.obscure 'podcasts/url', :controller => 'podcasts', :action => 'url'
+  map.obscure 'podcasts/url', :controller => 'podcasts', :action => 'url',
+              :method => :post
   map.connect 'podcasts/:guid', :controller => 'podcasts', :action => 'index'
-  map.podcast 'podcasts/:guid.xml', :controller => 'podcasts', :action => 'show'
+  map.connect 'podcasts/:guid.:format', :controller => 'podcasts', :action => 'index'
+  map.podcast 'podcasts/:year/:guid.xml', :controller => 'podcasts', :action => 'show',
+              :year => Time.now.year,
+              :requirements => { :year => /\d{4}/ }
+
   #map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
   # This route can be invoked with purchase_url(:id => product.id)
 
@@ -41,6 +46,6 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  #map.connect ':controller/:action/:id'
+  #map.connect ':controller/:action/:id.:format'
 end

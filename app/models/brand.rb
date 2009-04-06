@@ -1,15 +1,17 @@
 class Brand
-  attr_accessor :pid,:title, :subtitle, :episodes
+  attr_accessor :pid,:title, :subtitle, :episodes, :year
 
   def initialize
     @title = nil
     @subtitle = nil
     @pid = nil
+    @year = nil
     @episodes = []
   end
 
-  def self.fetch(pid)
-    year = Time.now.year
+  def self.fetch(pid,options=nil)
+    year = options[:year] if options.is_a?(Hash) && options.has_key?(:year)
+    year = year || Time.now.year
     episodes = []
     url = "http://www.bbc.co.uk/programmes/#{pid}/episodes/#{year}"
     doc = Nokogiri::XML(open(url))
@@ -18,6 +20,7 @@ class Brand
     brand.title = doc.search("li[@class='tleo']/a").text
     brand.subtitle = doc.search("h1/span[@class='desc']").text.gsub(/<\/?[^>]*>/, "").strip
     brand.pid = pid 
+    brand.year = year 
 
     doc.search("dd/ol[@class='episodes']/li").each do |e| 
       episode = Episode.new
@@ -52,7 +55,7 @@ class Brand
     File.join('http://bbc.co.uk/programmes', self.pid)
   end
 
-  def rss_link 
-    File.join(self.pid, 'podcasts.xml')
+  def guid
+    Obscurer.obscure(self.pid) unless self.pid.blank?
   end
 end

@@ -5,9 +5,9 @@ class PodcastsController < ApplicationController
   end
 
   def show
-    key = podcast_path(:guid => params[:guid])
-    pid = Obscurer.unobscure(params[:guid])
-    @brand = handle_fragment(key,pid)
+    key = podcast_path(:guid => params[:guid], :year => params[:year])
+    @brand = handle_fragment(key,params)
+    return custom_404 if @brand.blank? 
 
     respond_to do |format|
       format.xml
@@ -18,18 +18,20 @@ class PodcastsController < ApplicationController
 
   def url
     return render(:status => 404, :template => 'podcasts/show') if params[:pid].blank?
-    @guid = Obscurer.obscure(params[:pid])
-    key = podcast_path(:guid => @guid)
-    @brand = handle_fragment(key,params[:pid])
+    key = podcast_path(:guid => Obscurer.obscure(params[:pid]), :year => params[:year])
+    @brand = handle_fragment(key,params)
   rescue URI::InvalidURIError, OpenURI::HTTPError, SocketError, Errno::ENETUNREACH
     custom_404
   end
 
   private
 
-  def handle_fragment(key,pid)
+  def handle_fragment(key,options=nil)
+    pid = options[:pid] if options.is_a?(Hash) && options.has_key?(:pid)
+    pid = pid || Obscurer.unobscure(params[:guid]) if options.is_a?(Hash) && options.has_key?(:guid)
+    return nil if pid.blank? 
     expire_fragment(key) unless 
-      brand = read_fragment(key, :expires_in => 6.hours) || write_fragment(key, Redux.data(pid))
+      brand = read_fragment(key, :expires_in => 6.hours) || write_fragment(key, Redux.data(pid,options))
     return brand
   end
 

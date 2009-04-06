@@ -1,8 +1,8 @@
 <div id="url">
 <small><%= render(:partial=>'shared/home_link') -%> : Podcast link for <code><%= link_to(@brand.pid,"http://bbc.co.uk/programmes/#{@brand.pid}") %></code></small>
-<h1><%= link_to(@brand.title + image_tag('rss.png', :class => 'rss'), podcast_url(:guid => @guid)) %></h1>
+<h1><%= link_to("#{@brand.title} <span>#{@brand.year}</span>" + image_tag('rss.png', :class => 'rss'), podcast_url(:guid => @brand.guid, :year => @brand.year)) %></h1>
 <h2><%= @brand.subtitle %></h2>
 <%= image_tag(@brand.image, :class => 'brand') %>
-<p>Use the link below in your favourite podcast reader (it's up to you to keep this secret)</p>
-<%= text_field_tag( 'copy', podcast_url(:guid => @guid) ) %>
+<p>Use the link below in your favourite podcast reader (<strong>NOTE:</strong> It's up to you to keep this url private!)</p>
+<%= text_field_tag( 'copy', podcast_url(:guid => @brand.guid, :year => @brand.year) ) %>
 </div>

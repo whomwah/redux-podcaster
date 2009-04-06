@@ -19,6 +19,10 @@ h1 {
   line-height:0.2em;
 }
 
+h1 span, li span {
+  font-size: 0.8em;
+}
+
 h2 {
   font-size: 1em;
   margin:0 0 0.3em 0;  
@@ -31,9 +35,19 @@ p,ul,pre {
   margin-bottom:0.8em;  
 }
 
-label, input {
+input, select {
+  font-size: 1em;
+  padding:0.1em;
+  margin-right:0.3em;
+}
+
+label {
   font-size: 2em;
-  padding:0.2em;
+}
+
+form p label {
+  color:#666;
+  font-size: 0.7em;
 }
 
 input#pid {

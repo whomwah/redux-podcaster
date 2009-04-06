@@ -5,6 +5,7 @@ class HomeController < ApplicationController
 
   def authenticate
     authenticate_or_request_with_http_basic(realm = 'Enter your BBC Redux login details') do |username,password| 
+      #return true if request.host =~ /\.local$/
       if Redux.valid_user?(username,password)
         true 
       else

@@ -4,14 +4,14 @@
 <p>Some recent subscriptions:</p>
 <ul>
 <% recent_subscriptions.each do |f| %>
-<li><%= link_to(f.title + image_tag('rss14.png', :class => 'rss'), podcast_url(:guid => to_guid(f.pid))) %></li>
+<li><%= link_to("#{f.title} <span>#{f.year}</span>" + image_tag('rss14.png', :class => 'rss'), podcast_url(:guid => to_guid(f.pid), :year => f.year)) %></li>
 <% end %>
 </ul>
 <% end %>
 <p>You just need a brand pid. These can be found over at <%= link_to('BBC Programmes', 'http://bbc.co.uk/programmes') %>.</p>
 <% form_tag(obscure_path, :method => "post") do %>
   <h2><label for="pid">Enter a brand pid, e.g <code>b006wkfp</code></label></h2>
-  <%= text_field_tag(:pid) %>
-  <%= submit_tag("fetch") %>
+  <p><%= text_field_tag(:pid) %><%= submit_tag("Make me a Feed", :id => 'submit') %></p>
+  <p><%= select_year(Date.today, { :start_year => 2007, :end_year => 2009 }, { :id => "year", :name => "year" }) %><label for="year">Optional, defaults to current year</em></label></p>
 <% end %>
 <p id="footer"><small>Any bugs? <strike>keep them to y...</strike> .. let me know at <em>duncan at whomwah dot com</em></p>

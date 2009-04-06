@@ -12,8 +12,9 @@ class Redux
     !valid.nil?
   end
 
-  def self.data(pid)
-    return unless brand = Brand.fetch(pid)
+  def self.data(pid,options=nil)
+    pid = pid.strip
+    return unless brand = Brand.fetch(pid,options)
     episodes_to_use = []
 
     brand.episodes.each do |e|
@@ -21,7 +22,6 @@ class Redux
 
       url = File.join(e.redux_url)
       e.redux_link = url
-      puts e.redux_link + ' ' + e.pid
       res = Net::HTTP.post_form(URI.parse(url), CREDENTIALS)
       doc = Nokogiri::XML(res.body)
       results=[]
