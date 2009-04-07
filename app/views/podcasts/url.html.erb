@@ -1,3 +1,5 @@
+<% @pageTitle = "#{@brand.title} #{@brand.year}" %>
+
 <div id="url">
 <small><%= render(:partial=>'shared/home_link') -%> : Podcast link for <code><%= link_to(@brand.pid,"http://bbc.co.uk/programmes/#{@brand.pid}") %></code></small>
 <h1><%= link_to("#{@brand.title} <span>#{@brand.year}</span>" + image_tag('rss.png', :class => 'rss'), podcast_url(:guid => @brand.guid, :year => @brand.year)) %></h1>

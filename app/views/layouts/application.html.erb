@@ -6,7 +6,7 @@
 <%= yield :css %>
 <%= stylesheet_link_tag('all') %>
 <head>
-<title>BBC Redux Podcaster</title>
+<title><%= @pageTitle || 'BBC Redux Podcaster' %></title>
 </head>
 <body>
 <%= yield %>
