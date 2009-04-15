@@ -1,6 +1,6 @@
 class PodcastsController < ApplicationController
   def index
-    return redirect_to root_url if params[:guid].blank?
+    return redirect_to(root_url) if params[:guid].blank?
     redirect_to(:action => 'show')
   end
 
