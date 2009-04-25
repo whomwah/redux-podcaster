@@ -40,10 +40,12 @@ class Brand
     tmp_episodes = Hash.new 
     episodes.each do |e|
       next if e.start > Time.now
+      next if e.description =~ /\(R\)$/
       tmp_episodes[e.pid] = e unless e.service.nil?
     end
 
-    brand.episodes = tmp_episodes.values.reverse
+    tmp = tmp_episodes.values
+    brand.episodes = tmp.sort_by { |e| e.start }.reverse
     brand
   end
 
