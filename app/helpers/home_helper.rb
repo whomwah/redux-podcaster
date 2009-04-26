@@ -6,7 +6,7 @@ module HomeHelper
     sorted.each do |fn|
       subs << File.open(fn, 'rb') { |f| Marshal.load(f) } rescue []
     end
-    subs.reverse[0...5]
+    subs.reverse[0...10]
   end
 
 end
