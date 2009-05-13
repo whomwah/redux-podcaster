@@ -26,6 +26,7 @@ xml.rss(:version => '2.0', 'xmlns:itunes' => 'http://www.itunes.com/dtds/podcast
     @brand.episodes.each do |episode|
       xml.item do
         xml.title CGI.unescapeHTML(episode.display_title)
+        xml.description CGI.unescapeHTML(episode.description)
         xml.tag!('itunes:author', episode.service.title)
         xml.tag!('itunes:explicit', 'No')
         xml.tag!('itunes:keywords', "redux, bbc, programmes, #{episode.service.type}")

@@ -1,7 +1,8 @@
 body {
-  font: 62.5% Georgia, serif;
+  font: 60% Georgia, serif;
   color: #333;
   padding:1em;
+  width: 50%;
 }
 
 a { text-decoration: none; }

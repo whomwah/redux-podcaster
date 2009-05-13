@@ -17,7 +17,7 @@ class Brand
     doc = Nokogiri::XML(open(url))
 
     brand = self.new
-    brand.title = doc.search("li[@class='tleo']/a").text
+    brand.title = doc.search("title").text.split('-')[2]
     brand.subtitle = doc.search("h1/span[@class='desc']").text.gsub(/<\/?[^>]*>/, "").strip
     brand.pid = pid 
     brand.year = year 

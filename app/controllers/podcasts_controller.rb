@@ -31,7 +31,7 @@ class PodcastsController < ApplicationController
     pid = pid || Obscurer.unobscure(params[:guid]) if options.is_a?(Hash) && options.has_key?(:guid)
     return nil if pid.blank? 
     expire_fragment(key) unless 
-      brand = read_fragment(key, :expires_in => 6.hours) || write_fragment(key, Redux.data(pid,options))
+      brand = read_fragment(key, :expires_in => RSS_CACHE_TIME) || write_fragment(key, Redux.data(pid,options))
     return brand
   end
 

@@ -8,10 +8,11 @@
 <% end %>
 </ul>
 <% end %>
-<p>You just need a brand pid. These can be found over at <%= link_to('BBC Programmes', 'http://bbc.co.uk/programmes') %>.</p>
+<p>To create your own, you just need a <em>brand</em> or <em>series</em> pid. These can be found over at <%= link_to('BBC Programmes', 'http://bbc.co.uk/programmes') %>. You can also choose a year.</p>
 <% form_tag(obscure_path, :method => "post") do %>
-  <h2><label for="pid">Enter a brand pid, e.g <code>b006wkfp</code></label></h2>
+  <h2><label for="pid">Enter your pid, e.g <code>b006wkfp</code></label></h2>
   <p><%= text_field_tag(:pid) %><%= submit_tag("Make me a Feed", :id => 'submit') %></p>
-  <p><%= select_year(Date.today, { :start_year => 2007, :end_year => 2009 }, { :id => "year", :name => "year" }) %><label for="year">Optional, defaults to current year</em></label></p>
+  <p><%= select_year(Date.today, { :start_year => 2007, :end_year => 2009 }, { :id => "year", :name => "year" }) %></p>
 <% end %>
+<p><small><em>Restrictions</em>. A maximum of 30 items per feed are generated, and cached for 12 hours, to be kind to my little server. If anyone has a bigger server this could run on, this could be changed.</small></p>
 <p id="footer"><small>Any bugs? <strike>keep them to y...</strike> .. let me know at <em>duncan at whomwah dot com</em>. No personal data is stored on this site.</p>
