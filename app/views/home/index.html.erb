@@ -1,4 +1,18 @@
 <h1>BBC Redux Podcaster</h1>
 <p>Redux podcaster generates podcast feeds using <a href="http://www.bbcredux.com/">Redux</a> data.</p>
-<p>I'm afraid I had my Redux account reset as this service uses it to do all the heavy lifting, so until I fix this the site will be down, sorry</p>
+<% unless recent_subscriptions.empty? %>
+<p>Some recent subscriptions:</p>
+<ul>
+<% recent_subscriptions.each do |f| %>
+<li><%= link_to("#{f.title} <span>#{f.year}</span>" + image_tag('rss14.png', :class => 'rss'), podcast_url(:guid => to_guid(f.pid), :year => f.year)) %></li>
+<% end %>
+</ul>
+<% end %>
+<p>To create your own, you just need a <em>brand</em> or <em>series</em> pid. These can be found over at <%= link_to('BBC Programmes', 'http://bbc.co.uk/programmes') %>. You can also choose a year.</p>
+<% form_tag(obscure_path, :method => "post") do %>
+  <h2><label for="pid">Enter your pid, e.g <code>b006wkfp</code></label></h2>
+  <p><%= text_field_tag(:pid) %><%= submit_tag("Make me a Feed", :id => 'submit') %></p>
+  <p><%= select_year(Date.today, { :start_year => 2007, :end_year => 2012 }, { :id => "year", :name => "year" }) %></p>
+<% end %>
+<p><small><em>Restrictions</em>. A maximum of 30 items per feed are generated, and cached for 12 hours, to be kind to my little server. If anyone has a bigger server this could run on, this could be changed.</small></p>
 <p id="footer"><small>Any bugs? <strike>keep them to y...</strike> .. let me know at <em>duncan at whomwah dot com</em>. No personal data is stored on this site.</p>
